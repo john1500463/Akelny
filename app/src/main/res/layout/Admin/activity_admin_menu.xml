@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.AdminMenu"
+    tools:layout_editor_absoluteY="81dp">
+
+    <Button
+        android:id="@+id/FoodCRUDButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="37dp"
+        android:text="Food"
+        app:layout_constraintStart_toStartOf="@+id/CategoryCRUDButton"
+        app:layout_constraintTop_toBottomOf="@+id/CategoryCRUDButton" />
+
+    <Button
+        android:id="@+id/RestaurantCRUDButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="121dp"
+        android:text="Restaurants"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/CategoryCRUDButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="41dp"
+        android:text="Categories"
+        app:layout_constraintStart_toStartOf="@+id/RestaurantCRUDButton"
+        app:layout_constraintTop_toBottomOf="@+id/RestaurantCRUDButton" />
+</android.support.constraint.ConstraintLayout>

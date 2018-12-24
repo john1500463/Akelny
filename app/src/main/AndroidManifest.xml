@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Admin.AdminMenu" />
+        <activity android:name=".Admin.ResturantCRUD" />
+        <activity android:name=".Admin.FoodCRUD" />
+        <activity android:name=".Admin.CategoriesCRUD" />
+        <activity android:name=".Admin.AddCategory" />
+        <activity android:name=".Admin.EditCategory" />
+        <activity android:name=".Admin.RemoveCategory"></activity>
     </application>
 
 </manifest>
