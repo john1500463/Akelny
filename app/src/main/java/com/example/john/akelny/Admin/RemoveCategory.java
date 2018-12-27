@@ -43,7 +43,8 @@ public class RemoveCategory extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Category x = snapshot.getValue(Category.class);
-                    if (flag==true){break;
+                    if (flag==true){
+                        break;
 
                     }
                     else {
@@ -99,8 +100,15 @@ public class RemoveCategory extends AppCompatActivity {
             });
     }
 
-    public void SpinnerRead(){
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        flag=false;
+
+    }
+
+    public void SpinnerRead(){
 
         arrayAdapter= new ArrayAdapter<String>(RemoveCategory.this,android.R.layout.simple_spinner_item, CategoryNames);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

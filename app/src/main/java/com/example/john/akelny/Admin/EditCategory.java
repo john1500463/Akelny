@@ -2,7 +2,10 @@ package com.example.john.akelny.Admin;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.john.akelny.Model.Category;
@@ -20,6 +23,9 @@ public class EditCategory extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef;
     ArrayList<String> CategoryNames;
+    EditText NewName;
+    Button EditButton;
+    String itemselecteed;
 
 
 
@@ -29,15 +35,20 @@ public class EditCategory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_category);
         spinner=(Spinner)findViewById(R.id.CategoriesEditSpinner);
+        NewName=(EditText)findViewById(R.id.CategoryNewName);
+        EditButton = (Button)findViewById(R.id.EditCategoryToDatabase);
         CategoryNames = new ArrayList<String>();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Categories");
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Category x = snapshot.getValue(Category.class);
                     CategoryNames.add(x.CategoryName);
+
+
                 }
 
 
@@ -53,6 +64,33 @@ public class EditCategory extends AppCompatActivity {
             }
         });
 
+        EditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemselecteed = spinner.getSelectedItem().toString();
+                myRef = database.getReference("Categories");
+                myRef.orderByChild("CategoryName").equalTo(itemselecteed).addValueEventListener(new ValueEventListener(){
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot datas: dataSnapshot.getChildren()){
+                            String keys=datas.getKey().toString();
+                            Category category = new Category(NewName.getText().toString());
+                            myRef.child(keys).setValue(category);
 
-    }
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+
+                });
+
+            }
+        });
+
+}
 }

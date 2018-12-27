@@ -22,7 +22,10 @@
         <activity android:name=".Admin.CategoriesCRUD" />
         <activity android:name=".Admin.AddCategory" />
         <activity android:name=".Admin.EditCategory" />
-        <activity android:name=".Admin.RemoveCategory"></activity>
+        <activity android:name=".Admin.RemoveCategory" />
+        <activity android:name=".Admin.AddRestaurant" />
+        <activity android:name=".Admin.DeleteRestaurant" />
+        <activity android:name=".Admin.EditRestaurant"></activity>
     </application>
 
 </manifest>
