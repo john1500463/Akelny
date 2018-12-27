@@ -32,8 +32,8 @@ public class ResturantCRUD extends AppCompatActivity {
         EditRestaurantButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(ResturantCRUD.this,DeleteRestaurant.class);
-//                startActivity(intent);
+                Intent intent = new Intent(ResturantCRUD.this,EditRestaurant.class);
+                startActivity(intent);
 
             }
         });

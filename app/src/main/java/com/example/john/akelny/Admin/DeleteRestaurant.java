@@ -36,6 +36,7 @@ public class DeleteRestaurant extends AppCompatActivity {
     StorageReference mStorageRef;
     ArrayList<String> ImagesName;
     int index;
+    boolean flag=false;
 
 
     @Override
@@ -54,12 +55,16 @@ public class DeleteRestaurant extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if (flag==true)
+                    {
+                        break;
+                    }
                     Resturant x = snapshot.getValue(Resturant.class);
                     resturantsNames.add(x.ResuturantName);
                     ImagesName.add(x.Logo);
 
                 }
-
+                flag =true;
                 SpinnerReadResturants();
 
             }

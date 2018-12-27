@@ -36,7 +36,6 @@ public class AddRestaurant extends AppCompatActivity {
     EditText EndTime;
     Uri Image;
     StorageReference mStorageRef;
-
     FirebaseDatabase database;
     DatabaseReference myRef;
     Button Submit;

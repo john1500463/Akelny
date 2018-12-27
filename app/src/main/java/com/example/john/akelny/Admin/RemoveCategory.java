@@ -42,12 +42,13 @@ public class RemoveCategory extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Category x = snapshot.getValue(Category.class);
+
                     if (flag==true){
                         break;
 
                     }
                     else {
+                        Category x = snapshot.getValue(Category.class);
                         CategoryNames.add(x.CategoryName);
                     }
 
