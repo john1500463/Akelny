@@ -25,7 +25,8 @@
         <activity android:name=".Admin.RemoveCategory" />
         <activity android:name=".Admin.AddRestaurant" />
         <activity android:name=".Admin.DeleteRestaurant" />
-        <activity android:name=".Admin.EditRestaurant"></activity>
+        <activity android:name=".Admin.EditRestaurant" />
+        <activity android:name=".User.OrdersList"></activity>
     </application>
 
 </manifest>
