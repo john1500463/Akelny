@@ -13,11 +13,7 @@
         <activity android:name=".User.LoginActivity"
             android:label="Login">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
       
       
@@ -31,7 +27,13 @@
         <activity android:name=".Admin.AddRestaurant" />
         <activity android:name=".Admin.DeleteRestaurant" />
         <activity android:name=".Admin.EditRestaurant" />
-        <activity android:name=".User.OrdersList" />
+        <activity android:name=".User.OrdersList">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".Admin.AddNewFood" />
         <activity android:name=".User.HomeActivity" android:label="Home" ></activity>
         <activity android:name=".SignupActivity" android:label="Sign Up"></activity>

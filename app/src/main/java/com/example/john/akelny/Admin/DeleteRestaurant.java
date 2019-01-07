@@ -1,17 +1,15 @@
 package com.example.john.akelny.Admin;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.example.john.akelny.MainActivity;
 import com.example.john.akelny.Model.Resturant;
 import com.example.john.akelny.R;
-import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -89,15 +87,15 @@ public class DeleteRestaurant extends Activity {
 
 
                 mStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(ImagesName.get(index));
-                mStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                  @Override
-                  public void onSuccess(Void aVoid) {
+//                mStorageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+//                  @Override
+//                  public void onSuccess(Void aVoid) {
+////
+////                      Intent intent = new Intent(DeleteRestaurant.this, MainActivity.class);
+////                      startActivity(intent);
 //
-//                      Intent intent = new Intent(DeleteRestaurant.this, MainActivity.class);
-//                      startActivity(intent);
-
-                  }
-              });
+//                  }
+//              });
 
                      myRef.orderByChild("ResuturantName").equalTo(itemselecteed).addValueEventListener(new ValueEventListener() {
                     @Override
