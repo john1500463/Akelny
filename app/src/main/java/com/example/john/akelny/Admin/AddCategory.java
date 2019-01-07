@@ -1,6 +1,7 @@
 package com.example.john.akelny.Admin;
 
-import android.support.v7.app.AppCompatActivity;
+
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class AddCategory extends AppCompatActivity {
+public class AddCategory extends Activity {
     EditText CategoryName;
     Button AddCategorytoDB;
     Category category;

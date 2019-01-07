@@ -1,7 +1,8 @@
 package com.example.john.akelny.Admin;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,7 +24,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class EditRestaurant extends AppCompatActivity {
+public class EditRestaurant extends Activity {
 
     FirebaseDatabase database;
     DatabaseReference myRef;

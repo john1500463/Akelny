@@ -1,11 +1,12 @@
 package com.example.john.akelny.Admin;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+
 import android.os.Bundle;
 
 import com.example.john.akelny.R;
 
-public class AddNewFood2 extends AppCompatActivity {
+public class AddNewFood2 extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

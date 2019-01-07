@@ -1,7 +1,7 @@
 package com.example.john.akelny.Admin;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -22,7 +22,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-public class DeleteRestaurant extends AppCompatActivity {
+public class DeleteRestaurant extends Activity {
 
     Spinner SpinnerRemoveFood;
     ArrayList<String> resturantsNames;

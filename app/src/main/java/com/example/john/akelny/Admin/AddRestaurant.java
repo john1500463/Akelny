@@ -1,12 +1,11 @@
 package com.example.john.akelny.Admin;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -26,7 +25,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class AddRestaurant extends AppCompatActivity {
+public class AddRestaurant extends Activity {
     private static final int PICK_IMAGE_REQUEST=1;
     EditText RestaurantName;
     EditText DeliveryTime;
@@ -79,7 +78,7 @@ public class AddRestaurant extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==PICK_IMAGE_REQUEST && resultCode==RESULT_OK && data!=null &&data.getData()!=null){
@@ -121,7 +120,7 @@ public class AddRestaurant extends AppCompatActivity {
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onFailure(@NonNull Exception e) {
+                        public void onFailure( Exception e) {
                             Toast.makeText(AddRestaurant.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })

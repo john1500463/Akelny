@@ -1,7 +1,8 @@
 package com.example.john.akelny.Admin;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +10,7 @@ import android.widget.EditText;
 
 import com.example.john.akelny.R;
 
-public class CategoriesCRUD extends AppCompatActivity {
+public class CategoriesCRUD extends Activity {
     Button AddCategory;
     Button EditCategory;
     Button RemoveCategory;

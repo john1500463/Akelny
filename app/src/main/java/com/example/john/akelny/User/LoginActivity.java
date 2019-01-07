@@ -1,7 +1,8 @@
-package com.example.john.akelny;
+package com.example.john.akelny.User;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,19 +11,26 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.john.akelny.Admin.AdminMenu;
 import com.example.john.akelny.Model.User;
+import com.example.john.akelny.R;
+import com.example.john.akelny.SignupActivity;
 import com.google.firebase.database.DataSnapshot;
+
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class LoginActivity extends AppCompatActivity {
-
+public class LoginActivity extends Activity {
+    boolean flag = false;
     FirebaseDatabase db;
     DatabaseReference users;
     EditText editUserMail, editUserPassword;
     Button btnSignIn, btnSignup;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +58,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
     public void signIn(final String userMail, final String userPW) {
         if (TextUtils.isEmpty(userMail)) {
             Toast.makeText(getApplicationContext(), "Enter Email Address!", Toast.LENGTH_SHORT).show();
@@ -87,16 +98,18 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     User user = snap.getValue(User.class);
                     if(user.Email.equals(userMail) && user.Password.equals(userPW)){
-                        Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-                        startActivity(intent);
+                        flag = true;
+
                     }
-                    else {
-
-                        Toast.makeText(LoginActivity.this, "Email doesn't Exist", Toast.LENGTH_SHORT).show();
-                    }
-
-
                 }
+                if(flag == true){
+                Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                startActivity(intent);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Enter Password!", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
 

@@ -1,9 +1,12 @@
-package com.example.john.akelny;
+package com.example.john.akelny.User;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+
 import android.os.Bundle;
 
-public class HomeActivity extends AppCompatActivity {
+import com.example.john.akelny.R;
+
+public class HomeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

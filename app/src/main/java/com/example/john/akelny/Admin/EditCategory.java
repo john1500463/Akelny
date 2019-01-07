@@ -1,6 +1,7 @@
 package com.example.john.akelny.Admin;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class EditCategory extends AppCompatActivity {
+public class EditCategory extends Activity {
     Spinner spinner;
     FirebaseDatabase database;
     DatabaseReference myRef;

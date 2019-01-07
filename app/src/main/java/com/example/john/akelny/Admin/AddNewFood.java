@@ -1,7 +1,7 @@
 package com.example.john.akelny.Admin;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AddNewFood extends AppCompatActivity {
+public class AddNewFood extends Activity {
     ImageView image;
     FirebaseDatabase database;
     DatabaseReference myRef;

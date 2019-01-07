@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"/>        
-        <activity android:name=".LoginActivity"
+        <activity android:name=".User.LoginActivity"
             android:label="Login">
 
             <intent-filter>
@@ -33,7 +33,7 @@
         <activity android:name=".Admin.EditRestaurant" />
         <activity android:name=".User.OrdersList" />
         <activity android:name=".Admin.AddNewFood" />
-        <activity android:name=".HomeActivity" android:label="Home" ></activity>
+        <activity android:name=".User.HomeActivity" android:label="Home" ></activity>
         <activity android:name=".SignupActivity" android:label="Sign Up"></activity>
         <activity android:name=".Admin.AddNewFood2"></activity>
     </application>
