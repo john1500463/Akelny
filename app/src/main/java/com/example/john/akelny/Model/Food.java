@@ -8,16 +8,18 @@ public class Food {
     public String ResturantID;
     public String FoodImage;
 
+
     public Food(){
 
     }
-    public Food(String FoodID,String FoodName,String FoodDescription,String CategoryID, String ResturantID,String FoodImage){
-        this.FoodID=FoodID;
+    public Food(String FoodName,String FoodDescription,String CategoryID, String ResturantID,String FoodImage){
+
         this.FoodName=FoodName;
         this.FoodDescription=FoodDescription;
         this.CategoryID=CategoryID;
         this.ResturantID=ResturantID;
         this.FoodImage=FoodImage;
+
 
     }
 

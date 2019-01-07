@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(MainActivity.this, OrdersList.class);
+        Intent intent = new Intent(MainActivity.this, AdminMenu.class);
         startActivity(intent);
 
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
