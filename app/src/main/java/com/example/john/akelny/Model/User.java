@@ -15,17 +15,13 @@ public class User {
     public User(){
 
     }
-    public User(String UserID,String FirstName,String LastName,String Email,String Password,String Birthdate,String PhoneNumber,String Gender,String RoleID){
+    public User(String Email,String Password, String PhoneNumber,String FirstName,String LastName){
 
-        this.UserID = UserID;
-        this.FirstName=FirstName;
-        this.LastName=LastName;
         this.Email=Email;
         this.Password =Password;
-        this.Birthdate=Birthdate;
         this.PhoneNumber=PhoneNumber;
-        this.Gender=Gender;
-        this.RoleID=RoleID;
+        this.FirstName = FirstName;
+        this.LastName = LastName;
 
     }
 }
