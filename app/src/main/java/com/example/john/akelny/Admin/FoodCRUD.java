@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.john.akelny.MainActivity;
 import com.example.john.akelny.R;
+import com.example.john.akelny.User.LoginActivity;
 
 public class FoodCRUD extends Activity {
     Button AddFood,EditFood,DeleteFood;
@@ -31,7 +31,7 @@ public class FoodCRUD extends Activity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(FoodCRUD.this, MainActivity.class);
+                Intent intent = new Intent(FoodCRUD.this, LoginActivity.class);
                 startActivity(intent);
 
             }
@@ -40,7 +40,7 @@ public class FoodCRUD extends Activity {
         DeleteFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FoodCRUD.this, MainActivity.class);
+                Intent intent = new Intent(FoodCRUD.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

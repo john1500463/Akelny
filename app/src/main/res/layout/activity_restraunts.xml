@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_constraintWidth_default="wrap"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".User.HomeActivity">
+    android:orientation="vertical"
+    tools:context=".User.RestrauntsActivity"
+    >
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="55dp">
+
+    </ListView>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_gravity="bottom"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        android:layout_gravity="bottom">
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/main_nav"
@@ -23,17 +28,7 @@
             app:itemBackground="@color/colorPrimaryDark"
             app:itemIconTint="@color/nav_items_color"
             app:itemTextColor="@color/colorWhite"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.516"
-            app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/nav_items" />
 
     </FrameLayout>
-
-
-
-
-
-    
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

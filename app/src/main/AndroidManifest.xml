@@ -9,14 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>        
-        <activity android:name=".User.LoginActivity"
+        <activity
+            android:name=".User.LoginActivity"
             android:label="Login">
 
-
         </activity>
-      
-      
         <activity android:name=".Admin.AdminMenu" />
         <activity android:name=".Admin.ResturantCRUD" />
         <activity android:name=".Admin.FoodCRUD" />
@@ -27,17 +24,20 @@
         <activity android:name=".Admin.AddRestaurant" />
         <activity android:name=".Admin.DeleteRestaurant" />
         <activity android:name=".Admin.EditRestaurant" />
-        <activity android:name=".User.OrdersList">
-        <intent-filter>
+        <activity android:name=".User.OrdersList" />
+        <activity android:name=".Admin.AddNewFood" />
+        <activity
+            android:name=".User.HomeActivity"
+            android:label="Home" />
+        <activity
+            android:name=".SignupActivity"
+            android:label="Sign Up" />
+        <activity android:name=".Admin.AddNewFood2" />
+        <activity android:name=".User.RestrauntsActivity"><intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-        <activity android:name=".Admin.AddNewFood" />
-        <activity android:name=".User.HomeActivity" android:label="Home" ></activity>
-        <activity android:name=".SignupActivity" android:label="Sign Up"></activity>
-        <activity android:name=".Admin.AddNewFood2"></activity>
+        </intent-filter></activity>
     </application>
 
 </manifest>

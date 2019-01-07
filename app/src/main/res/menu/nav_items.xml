@@ -4,8 +4,12 @@
 
     <item
         android:icon="@drawable/baseline_home_black_18dp"
-        android:title="@string/nav_home" />
+        android:title="@string/nav_restraunts" />
     <item
         android:icon="@drawable/baseline_shopping_cart_black_18dp"
         android:title="@string/nav_cart" />
+
+    <item
+        android:icon="@drawable/baseline_shopping_cart_black_18dp"
+        android:title="@string/nav_orderlist" />
 </menu>

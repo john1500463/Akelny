@@ -15,6 +15,7 @@ import com.example.john.akelny.Admin.AdminMenu;
 import com.example.john.akelny.Model.User;
 import com.example.john.akelny.R;
 import com.example.john.akelny.SignupActivity;
+
 import com.google.firebase.database.DataSnapshot;
 
 import com.google.firebase.database.DatabaseError;
@@ -71,26 +72,6 @@ public class LoginActivity extends Activity {
             Toast.makeText(getApplicationContext(), "Enter Password!", Toast.LENGTH_SHORT).show();
             return;
         }
-//        users.child("Email").child(userMail).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                if(dataSnapshot.child(userMail).exists())
-//                {
-//                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-//
-//                }
-//                else
-//                {
-//                    Toast.makeText(LoginActivity.this, "Email doesn't Exist", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
         users.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -103,7 +84,7 @@ public class LoginActivity extends Activity {
                     }
                 }
                 if(flag == true){
-                Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 startActivity(intent);
                 }
                 else {
