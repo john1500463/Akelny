@@ -15,7 +15,7 @@ import com.example.john.akelny.R;
  */
 public class RestrauntsFoodFragment extends Fragment {
 
-    BottomNavigationBar 
+
     FrameLayout mainFrameLayout;
 
     public RestrauntsFoodFragment() {

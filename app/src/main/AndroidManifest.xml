@@ -13,7 +13,13 @@
             android:name=".User.LoginActivity"
             android:label="Login">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
+
         <activity android:name=".Admin.AdminMenu" />
         <activity android:name=".Admin.ResturantCRUD" />
         <activity android:name=".Admin.FoodCRUD" />
@@ -33,11 +39,12 @@
             android:name=".SignupActivity"
             android:label="Sign Up" />
         <activity android:name=".Admin.AddNewFood2" />
-        <activity android:name=".User.RestrauntsActivity"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".User.RestrauntsActivity" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <activity android:name=".User.OrderHistory" />
+
+
+
     </application>
 
 </manifest>
