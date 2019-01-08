@@ -2,7 +2,10 @@ package com.example.john.akelny.User;
 
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -87,6 +90,16 @@ public class RestrauntsFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment fragment = new RestrauntsFoodFragment();
+                Bundle arguments = new Bundle();
+                arguments.putString( "RName" , resturants.get(position).ResuturantName);
+                fragment.setArguments(arguments);
+                fragmentTransaction.replace(R.id.fragment_container, fragment, "rest");
+                fragmentTransaction.addToBackStack("rest");
+                fragmentTransaction.commit();
+
             }
         });
 

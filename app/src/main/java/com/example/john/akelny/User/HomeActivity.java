@@ -63,9 +63,14 @@ public class HomeActivity extends Activity implements MaterialSearchBar.OnSearch
         searchBar.setSpeechMode(true);
         searchBar.setOnSearchActionListener(this);
 
-        FragmentManager fragmentManager = getFragmentManager();;
+        FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, new RestrauntsFragment(), "rest");
+        Fragment fragment = new RestrauntsFragment();
+        Bundle arguments = new Bundle();
+        arguments.putString( "John" , "j");
+        fragment.setArguments(arguments);
+
+        fragmentTransaction.replace(R.id.fragment_container, fragment, "rest");
         fragmentTransaction.addToBackStack("rest");
         fragmentTransaction.commit();
 
