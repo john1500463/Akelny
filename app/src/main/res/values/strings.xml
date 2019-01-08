@@ -17,4 +17,5 @@
     <string name="nav_logout">Log out</string>
     <string name="facebook_app_id">584226158668465</string>
     <string name="fb_login_protocol_scheme">fb584226158668465</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
