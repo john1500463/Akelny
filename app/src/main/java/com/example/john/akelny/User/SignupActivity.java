@@ -54,7 +54,8 @@ public class SignupActivity extends Activity {
                             Toast.makeText(SignupActivity.this, "Email Exists", Toast.LENGTH_LONG).show();
                         else
                         {
-                            users.child(encodeUserEmail(user.Email)).setValue(user);
+                            String key = users.push().getKey();
+                            users.child(key).setValue(user);
                             Toast.makeText(SignupActivity.this, "Successful!", Toast.LENGTH_SHORT).show();
                         }
                     }

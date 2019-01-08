@@ -41,7 +41,8 @@ public class EditRestaurant extends Activity {
     int PositionChosen;
     ArrayAdapter arrayAdapter;
     boolean flag=false;
-
+    EditText LongitudeEdit;
+    EditText LatitudeEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,8 @@ public class EditRestaurant extends Activity {
         EditStartTime=(EditText)findViewById(R.id.StartTimeEdit);
         EditEndTime=(EditText)findViewById(R.id.EndTimeEdit);
         EditResturanttoDataBase=(Button)findViewById(R.id.EditRestaurantToDataBase);
+        LongitudeEdit = (EditText)findViewById(R.id.LongitudeEdit);
+        LatitudeEdit = (EditText)findViewById(R.id.LatitudeEdit);
 
         spinnerEditResturants=(Spinner)findViewById(R.id.EditResturantSpinner);
         database = FirebaseDatabase.getInstance();
@@ -89,7 +92,7 @@ public class EditRestaurant extends Activity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for(DataSnapshot datas: dataSnapshot.getChildren()){
                             String keys=datas.getKey().toString();
-                            Resturant resturant = new Resturant(resturants.get(PositionChosen).ResuturantName.toString(),Float.valueOf(EditDeliveryTime.getText().toString()),Float.valueOf(EditDeliveryFees.getText().toString()),resturants.get(PositionChosen).Logo.toString(),Float.valueOf(EditStartTime.getText().toString()),Float.valueOf(EditEndTime.getText().toString()));
+                            Resturant resturant = new Resturant(resturants.get(PositionChosen).ResuturantName.toString(),EditDeliveryTime.getText().toString(),EditDeliveryFees.getText().toString(),resturants.get(PositionChosen).Logo.toString(),EditStartTime.getText().toString(),EditEndTime.getText().toString(),LongitudeEdit.getText().toString(),LatitudeEdit.getText().toString());
                             myRef.child(keys).setValue(resturant);
                             Toast.makeText(EditRestaurant.this, "Changed Succssefully", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(EditRestaurant.this,AdminMenu.class);
@@ -121,6 +124,8 @@ public class EditRestaurant extends Activity {
                     EditDeliveryTime.setText(resturants.get(position).DeliveryTime.toString());
                     EditStartTime.setText(resturants.get(position).StartTime.toString());
                     EditEndTime.setText(resturants.get(position).EndTime.toString());
+                    LongitudeEdit.setText(resturants.get(position).Longitude.toString());
+                    LatitudeEdit.setText(resturants.get(position).Latitude.toString());
                     PositionChosen=position;
 
 

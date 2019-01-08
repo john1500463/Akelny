@@ -10,6 +10,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.john.akelny.Model.Resturant;
@@ -31,6 +32,9 @@ public class AddRestaurant extends Activity {
     Button LogoButton;
     EditText StartTime;
     EditText EndTime;
+    EditText Longitude;
+    EditText Latitude;
+    TextView imagename;
     Uri Image;
     StorageReference mStorageRef;
     FirebaseDatabase database;
@@ -48,6 +52,10 @@ public class AddRestaurant extends Activity {
         StartTime = (EditText)findViewById(R.id.StartTime);
         EndTime=(EditText)findViewById(R.id.EndTime);
         LogoButton=(Button)findViewById(R.id.Logo);
+        Longitude= (EditText)findViewById(R.id.Longitude);
+        Latitude = (EditText)findViewById(R.id.Latitude);
+        imagename= (TextView)findViewById(R.id.LogoTextView);
+        imagename.setText("No Image Selected");
         mStorageRef= FirebaseStorage.getInstance().getReference("Uploads");
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Restaurants");
@@ -82,6 +90,7 @@ public class AddRestaurant extends Activity {
         if(requestCode==PICK_IMAGE_REQUEST && resultCode==RESULT_OK && data!=null &&data.getData()!=null){
 
             Image=data.getData();
+            imagename.setText(Image.getLastPathSegment());
 
         }
     }
@@ -104,13 +113,9 @@ public class AddRestaurant extends Activity {
 
 
                             Toast.makeText(AddRestaurant.this, "Upload successful", Toast.LENGTH_LONG).show();
-//                            Resturant upload = new Res(
-//                                    taskSnapshot.getDownloadUrl().toString());
-//                            String uploadId = mDatabaseRef.push().getKey();
-//                            mDatabaseRef.child(uploadId).setValue(upload);
 
                             String key = myRef.push().getKey();
-                            Resturant resturant = new Resturant(RestaurantName.getText().toString(),Float.valueOf(DeliveryTime.getText().toString()),Float.valueOf(DeliveryFees.getText().toString()),taskSnapshot.getDownloadUrl().toString(),Float.valueOf(StartTime.getText().toString()),Float.valueOf(EndTime.getText().toString()));
+                            Resturant resturant = new Resturant(RestaurantName.getText().toString(),DeliveryTime.getText().toString(),DeliveryFees.getText().toString(),taskSnapshot.getDownloadUrl().toString(),StartTime.getText().toString(),EndTime.getText().toString(),Longitude.getText().toString(),Latitude.getText().toString());
                             myRef.child(key).setValue(resturant);
 
 

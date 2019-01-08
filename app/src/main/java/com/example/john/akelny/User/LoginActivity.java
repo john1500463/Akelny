@@ -85,7 +85,7 @@ public class LoginActivity extends Activity {
                 for(DataSnapshot snap : dataSnapshot.getChildren())
                 {
                     User user = snap.getValue(User.class);
-                    if(user.Email.equals(userMail) && user.Password.equals(userPW)){
+                    if(encodeUserEmail(user.Email).equals(userMail) && user.Password.equals(userPW)){
                         flag = true;
 
                     }
@@ -110,6 +110,8 @@ public class LoginActivity extends Activity {
         });
 
     }
+
+
 
     static String encodeUserEmail(String userEmail) {
         return userEmail.replace(".", ",");

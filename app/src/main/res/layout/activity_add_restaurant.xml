@@ -10,21 +10,35 @@
     <EditText
         android:id="@+id/EndTime"
         android:layout_width="0dp"
-        android:layout_height="52dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="38dp"
         android:layout_marginRight="38dp"
         android:ems="10"
         android:hint="End Time"
         android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/StartTime"
+        app:layout_constraintBottom_toBottomOf="@+id/StartTime"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/StartTime" />
+        app:layout_constraintStart_toEndOf="@+id/StartTime"
+        app:layout_constraintTop_toTopOf="@+id/StartTime" />
+
+    <EditText
+        android:id="@+id/Latitude"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:ems="10"
+        android:hint="Latitude"
+        android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/Longitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Longitude" />
 
     <EditText
         android:id="@+id/StartTime"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="9dp"
         android:layout_marginEnd="32dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="32dp"
@@ -38,10 +52,27 @@
         app:layout_constraintTop_toBottomOf="@+id/DeleviryFees" />
 
     <EditText
+        android:id="@+id/Longitude"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:hint="Longitude"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/DeleviryTime"
+        app:layout_constraintEnd_toStartOf="@+id/Latitude"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ResturantName" />
+
+    <EditText
         android:id="@+id/DeleviryFees"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="18dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -58,18 +89,18 @@
         android:id="@+id/DeleviryTime"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="17dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:hint="Deleviry Time"
+        android:hint="Deleviry Time (In Min)"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/DeleviryFees"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ResturantName" />
+        app:layout_constraintTop_toBottomOf="@+id/Longitude" />
 
     <EditText
         android:id="@+id/ResturantName"
@@ -84,7 +115,7 @@
         android:ems="10"
         android:hint="Restaurant Name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/DeleviryTime"
+        app:layout_constraintBottom_toTopOf="@+id/Longitude"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -93,7 +124,7 @@
         android:id="@+id/AddRestaurantToDataBase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="92dp"
         android:layout_marginLeft="93dp"
         android:layout_marginRight="92dp"
@@ -108,15 +139,28 @@
         android:id="@+id/Logo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="35dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="30dp"
         android:layout_marginStart="16dp"
         android:text="Logo Image"
         app:layout_constraintBottom_toTopOf="@+id/AddRestaurantToDataBase"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/LogoTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StartTime" />
+
+    <TextView
+        android:id="@+id/LogoTextView"
+        android:layout_width="143dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:layout_marginTop="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/AddRestaurantToDataBase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Logo"
+        app:layout_constraintTop_toBottomOf="@+id/EndTime" />
 
 </android.support.constraint.ConstraintLayout>
