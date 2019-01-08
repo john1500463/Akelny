@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.AddNewFood">
+    tools:context=".Admin.AddNewFood"
+    tools:layout_editor_absoluteY="81dp">
 
     <EditText
         android:id="@+id/FoodDescription"
@@ -45,7 +46,7 @@
         android:id="@+id/spinner1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -96,12 +97,15 @@
         android:id="@+id/UploadImageForNewFood"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:text="Upload Image For NewFood"
+        android:layout_marginBottom="18dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="54dp"
+        android:layout_marginStart="16dp"
+        android:text="Upload Image "
         app:layout_constraintBottom_toTopOf="@+id/NextFirstPageInFood"
-        app:layout_constraintEnd_toStartOf="@+id/NextFirstPageInFood"
+        app:layout_constraintEnd_toStartOf="@+id/ImageNameForNewFood"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 
     <ImageView
@@ -115,4 +119,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UploadImageForNewFood" />
+
+    <TextView
+        android:id="@+id/ImageNameForNewFood"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginRight="66dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/NextFirstPageInFood"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/UploadImageForNewFood"
+        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
 </android.support.constraint.ConstraintLayout>

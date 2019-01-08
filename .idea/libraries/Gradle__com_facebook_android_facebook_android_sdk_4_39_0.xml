@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.android:facebook-android-sdk-4.39.0">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-android-sdk-4.39.0.aar/805b38a172da92e619c4d55cf2ce5001/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-android-sdk-4.39.0.aar/805b38a172da92e619c4d55cf2ce5001/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/Gradle/caches/transforms-1/files-1.1/facebook-android-sdk-4.39.0.aar/f6e8db8ccfaae411632c4b6c8ac64c44/res" />
+      <root url="jar://$USER_HOME$/Gradle/caches/transforms-1/files-1.1/facebook-android-sdk-4.39.0.aar/f6e8db8ccfaae411632c4b6c8ac64c44/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-android-sdk/4.39.0/ce18de7e84d3a5d702abea91145e0caf5ee452c0/facebook-android-sdk-4.39.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-android-sdk/4.39.0/ce18de7e84d3a5d702abea91145e0caf5ee452c0/facebook-android-sdk-4.39.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

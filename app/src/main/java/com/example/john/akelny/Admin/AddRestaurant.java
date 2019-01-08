@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
-
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -58,7 +57,7 @@ public class AddRestaurant extends Activity {
         imagename.setText("No Image Selected");
         mStorageRef= FirebaseStorage.getInstance().getReference("Uploads");
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("Restaurants");
+
 
         Submit = (Button)findViewById(R.id.AddRestaurantToDataBase);
         Submit.setOnClickListener(new View.OnClickListener() {

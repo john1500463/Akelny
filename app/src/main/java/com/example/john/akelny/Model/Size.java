@@ -7,8 +7,8 @@ public class Size {
     public Size(){
 
     }
-    public Size(String SizeID,String SizeName){
-        this.SizeID=SizeID;
+    public Size(String SizeName){
+
         this.SizeName=SizeName;
     }
 

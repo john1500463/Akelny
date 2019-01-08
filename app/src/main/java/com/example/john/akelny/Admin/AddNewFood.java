@@ -1,6 +1,7 @@
 package com.example.john.akelny.Admin;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.john.akelny.Model.Category;
@@ -44,14 +46,23 @@ public class AddNewFood extends Activity {
     ArrayList<Category> Categories;
     Spinner CategoriesSpinner,ResturantsSpinner;
     ArrayAdapter arrayAdapter;
+    ProgressDialog progressDialog;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_food);
+        textView=(TextView)findViewById(R.id.ImageNameForNewFood);
+        textView.setText("No Image Selected");
         ResturantsSpinner=(Spinner)findViewById(R.id.spinnerResturantNameAddFood);
         image = (ImageView)findViewById(R.id.NextFirstPageInFood);
         uploadImage = (Button) findViewById(R.id.UploadImageForNewFood);
         CategoriesSpinner=(Spinner)findViewById(R.id.spinner1);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Loading Information");
+        progressDialog.setMessage("Loading");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +119,7 @@ public class AddNewFood extends Activity {
                 arrayAdapter = new ArrayAdapter<String>(AddNewFood.this, android.R.layout.simple_spinner_item, CategoryNames);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 CategoriesSpinner.setAdapter(arrayAdapter);
+                progressDialog.dismiss();
 
             }
 
@@ -133,6 +145,7 @@ public class AddNewFood extends Activity {
         if(requestCode==PICK_IMAGE_REQUEST && resultCode==RESULT_OK && data!=null &&data.getData()!=null){
 
             Image=data.getData();
+            textView.setText(Image.getPath());
 
         }
     }
