@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/FoodImageView"
+        android:layout_width="94dp"
+        android:layout_height="98dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:srcCompat="@drawable/baseline_account_circle_black_18dp"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <TextView
+        android:id="@+id/FoodDescriptionTextView"
+        android:layout_width="180dp"
+        android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="82dp"
+        android:layout_marginTop="51dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/FoodNameTextView"
+        android:layout_width="180dp"
+        android:layout_height="36dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/FoodDescriptionTextView"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_above="@+id/FoodDescriptionTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="-51dp"
+        android:layout_marginEnd="17dp"
+        app:srcCompat="@drawable/plus" />
+</RelativeLayout>
