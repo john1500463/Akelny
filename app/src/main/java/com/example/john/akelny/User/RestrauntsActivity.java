@@ -19,6 +19,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
+
+
+
 
 import com.example.john.akelny.Model.Resturant;
 import com.example.john.akelny.R;
@@ -27,17 +32,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class RestrauntsActivity extends Activity {
+public class RestrauntsActivity extends Activity implements MaterialSearchBar.OnSearchActionListener{
     ListView listView;
     ImageView imageview;
     TextView one;
     TextView two;
+    private MaterialSearchBar searchBar;
+
     FirebaseDatabase database;
     DatabaseReference myRef;
     ArrayList<Resturant>resturants;
@@ -49,6 +57,12 @@ public class RestrauntsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restraunts);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        searchBar = (MaterialSearchBar) findViewById(R.id.searchBar);
+        searchBar.setHint("Custom hint");
+        searchBar.setSpeechMode(true);
+        searchBar.setOnSearchActionListener(this);
         progressDialog = new ProgressDialog(RestrauntsActivity.this);
         progressDialog.setTitle("Loading Resturants");
         progressDialog.setMessage("Loading");
@@ -129,6 +143,28 @@ public class RestrauntsActivity extends Activity {
             }
         });
 
+    }
+
+    @Override
+    public void onSearchStateChanged(boolean b) {
+        String state = b ? "enabled" : "disabled";
+        Toast.makeText(RestrauntsActivity.this, "Search " + state, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSearchConfirmed(CharSequence text) {
+        Toast.makeText(this,"Searching "+ text.toString()+" ......",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onButtonClicked(int buttonCode) {
+        switch (buttonCode){
+            case MaterialSearchBar.BUTTON_NAVIGATION:
+                Toast.makeText(RestrauntsActivity.this, "Button Nav " , Toast.LENGTH_SHORT).show();
+                break;
+            case MaterialSearchBar.BUTTON_SPEECH:
+                Toast.makeText(RestrauntsActivity.this, "Speech " , Toast.LENGTH_SHORT).show();
+        }
     }
 
     private class CustomerAdapter extends BaseAdapter{

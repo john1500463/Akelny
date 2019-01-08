@@ -61,7 +61,7 @@ public class LoginActivity extends Activity {
         fbLogin = (LoginButton)findViewById(R.id.login_button);
         cbm = CallbackManager.Factory.create();
         fbLogin.setReadPermissions(Arrays.asList("email"));
-
+        auth = FirebaseAuth.getInstance();
         AppEventsLogger.activateApp(this);
         db = FirebaseDatabase.getInstance();
         users = db.getReference("Users");
@@ -92,13 +92,14 @@ public class LoginActivity extends Activity {
 
 
 
+
+
     public void buttonOnClickFBLogin(View v)
     {
         LoginManager.getInstance().registerCallback(cbm, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookToken(loginResult.getAccessToken());
-                editUserMail.setText("John");
                 startActivity(new Intent(LoginActivity.this, RestrauntsActivity.class));
             }
 
@@ -116,21 +117,25 @@ public class LoginActivity extends Activity {
 
     private void handleFacebookToken(AccessToken accessToken) {
         AuthCredential cred = FacebookAuthProvider.getCredential(accessToken.getToken());
-        auth.signInWithCredential(cred)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.signInWithCredential(cred).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(Task<AuthResult> task) {
                 if(task.isSuccessful())
                 {
                     FirebaseUser user = auth.getCurrentUser();
-
-                }
-                else
+                    editUserMail.setText(user.getEmail());
+                }else
                 {
-                    Toast.makeText(LoginActivity.this, "Couldn't Register", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        cbm.onActivityResult(requestCode,resultCode,data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     public void signIn(final String userMail, final String userPW) {
