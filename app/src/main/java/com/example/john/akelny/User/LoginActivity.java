@@ -98,6 +98,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookToken(loginResult.getAccessToken());
+                editUserMail.setText("John");
                 startActivity(new Intent(LoginActivity.this, RestrauntsActivity.class));
             }
 
@@ -115,7 +116,8 @@ public class LoginActivity extends Activity {
 
     private void handleFacebookToken(AccessToken accessToken) {
         AuthCredential cred = FacebookAuthProvider.getCredential(accessToken.getToken());
-        auth.signInWithCredential(cred).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.signInWithCredential(cred)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(Task<AuthResult> task) {
                 if(task.isSuccessful())

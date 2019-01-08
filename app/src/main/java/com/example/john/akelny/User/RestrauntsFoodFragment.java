@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,9 +31,10 @@ public class RestrauntsFoodFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restraunts_food, container, false);
-        navBar = (BottomNavigationView) findViewById(R.id.main_nav);
-        mainFrameLayout = (FrameLayout) findViewById(R.id.main_frame);
+
+        View v= inflater.inflate(R.layout.fragment_restraunts_food, container, false);
+        navBar = (BottomNavigationView) v.findViewById(R.id.main_nav);
+        mainFrameLayout = (FrameLayout) v.findViewById(R.id.main_frame);
         navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
@@ -40,29 +42,29 @@ public class RestrauntsFoodFragment extends Fragment {
                 {
                     case R.id.nav_restraunts:
                     {
-                        startActivity(new Intent(RestrauntsFoodFragment.this, RestrauntsActivity.class));
+                        RestrauntsFoodFragment.this.startActivity(new Intent(getActivity(), RestrauntsActivity.class));
                         return true;
                     }
                     case R.id.nav_cart:
                     {
-                        startActivity(new Intent(RestrauntsFoodFragment.this, CartActivity.class));
+                        RestrauntsFoodFragment.this.startActivity(new Intent(getActivity(), CartActivity.class));
                         return true;
                     }
                     case R.id.nav_orderlist:
                     {
-                        startActivity(new Intent(RestrauntsFoodFragment.this, OrdersList.class));
+                        RestrauntsFoodFragment.this.startActivity(new Intent(getActivity(), OrdersList.class));
                         return true;
                     }
 
                     case R.id.nav_myinfo:
                     {
-                        startActivity(new Intent(RestrauntsFoodFragment.this, AccountActivity.class));
+                        RestrauntsFoodFragment.this.startActivity(new Intent(getActivity(), AccountActivity.class));
                         return true;
                     }
 
                     case R.id.nav_logout:
                     {
-                        startActivity(new Intent(RestrauntsFoodFragment.this, LoginActivity.class));
+                        RestrauntsFoodFragment.this.startActivity(new Intent(getActivity(), LoginActivity.class));
                         return true;
                     }
                     default: return false;
@@ -71,6 +73,7 @@ public class RestrauntsFoodFragment extends Fragment {
                 }
             }
         });
+        return v;
     }
 
 }
