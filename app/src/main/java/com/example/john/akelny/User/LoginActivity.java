@@ -30,6 +30,7 @@ public class LoginActivity extends Activity {
     EditText editUserMail, editUserPassword;
     Button btnSignIn, btnSignup;
     ProgressDialog progressDialog;
+    String UserType;
 
 
 
@@ -80,19 +81,22 @@ public class LoginActivity extends Activity {
         users.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot snap : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     User user = snap.getValue(User.class);
-                    if(encodeUserEmail(user.Email).equals(userMail) && user.Password.equals(userPW)){
+                    if (encodeUserEmail(user.Email).equals(userMail) && user.Password.equals(userPW)) {
                         flag = true;
+                        UserType = user.UserType;
 
                     }
                 }
-                if(flag == true){
-                    Intent intent = new Intent(LoginActivity.this, RestrauntsActivity.class);
-                    progressDialog.dismiss();
-                    startActivity(intent);
+                if (flag == true) {
+                    if (UserType.equals("1")) {
+                        Intent intent = new Intent(LoginActivity.this, RestrauntsActivity.class);
+                        progressDialog.dismiss();
+                        startActivity(intent);
+                    }
                 }
+
                 else {
                     progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Wrong Username or Password !", Toast.LENGTH_SHORT).show();
