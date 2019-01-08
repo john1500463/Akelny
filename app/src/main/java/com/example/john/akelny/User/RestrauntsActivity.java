@@ -2,6 +2,7 @@ package com.example.john.akelny.User;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -43,10 +44,16 @@ public class RestrauntsActivity extends Activity {
     ImageView imageview2;
     BottomNavigationView navBar;
     FrameLayout mainFrameLayout;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restraunts);
+        progressDialog = new ProgressDialog(RestrauntsActivity.this);
+        progressDialog.setTitle("Loading Resturants");
+        progressDialog.setMessage("Loading");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -144,7 +151,7 @@ public class RestrauntsActivity extends Activity {
             return 0;
         }
 
-        @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = getLayoutInflater().inflate(R.layout.customlisthistory,null);
@@ -165,7 +172,10 @@ public class RestrauntsActivity extends Activity {
             two.setText(String.valueOf(resturants.get(position).DeliveryFees));
             imageview2 = (ImageView) convertView.findViewById(R.id.imageView2);
             imageview2.setImageDrawable(getResources().getDrawable(R.drawable.icons8));
+            if(position == resturants.size()-1){
 
+                progressDialog.dismiss();
+            }
 
             return convertView;
         }
