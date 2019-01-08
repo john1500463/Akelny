@@ -5,6 +5,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -14,7 +15,14 @@ import android.widget.Toast;
 
 import com.example.john.akelny.Model.Resturant;
 import com.example.john.akelny.R;
+import com.google.android.gms.location.places.AutocompleteFilter;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.location.places.ui.SupportPlaceAutocompleteFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -39,6 +47,9 @@ public class AddRestaurant extends Activity {
     FirebaseDatabase database;
     DatabaseReference myRef;
     Button Submit;
+    double placeLat, placeLong;
+
+    private SupportPlaceAutocompleteFragment placeAutocompleteFragment;
 
 
     @Override
@@ -51,13 +62,12 @@ public class AddRestaurant extends Activity {
         StartTime = (EditText)findViewById(R.id.StartTime);
         EndTime=(EditText)findViewById(R.id.EndTime);
         LogoButton=(Button)findViewById(R.id.Logo);
-        Longitude= (EditText)findViewById(R.id.Longitude);
-        Latitude = (EditText)findViewById(R.id.Latitude);
         imagename= (TextView)findViewById(R.id.LogoTextView);
         imagename.setText("No Image Selected");
         mStorageRef= FirebaseStorage.getInstance().getReference("Uploads");
         database = FirebaseDatabase.getInstance();
 
+        autoCompletePlaces();
 
         Submit = (Button)findViewById(R.id.AddRestaurantToDataBase);
         Submit.setOnClickListener(new View.OnClickListener() {
@@ -100,8 +110,39 @@ public class AddRestaurant extends Activity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
+    public void autoCompletePlaces(){
+
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+            //add filter to search in egypt only
+            autocompleteFragment.setFilter(new AutocompleteFilter.Builder().setCountry("EG").build());
+
+            autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+                @Override
+                public void onPlaceSelected(Place place) {
+                    final LatLng latLngLoc = place.getLatLng();
+
+
+                    placeLat = latLngLoc.latitude;
+                    placeLong = latLngLoc.longitude;
+
+                    Log.i("Place", place.getAddress().toString());
+                    Log.i("Long", String.valueOf(placeLat));
+                    Log.i("Lat", String.valueOf(placeLong));
+
+                }
+
+                @Override
+                public void onError(Status status) {
+                    Toast.makeText(AddRestaurant.this, "" + status.toString(), Toast.LENGTH_SHORT).show();
+                    Log.i("Autocomplete", status.toString());
+                }
+            });
+    }
+
     private void uploadFile() {
         if (Image != null) {
+            myRef = database.getReference("Restaurants");
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(Image));
 
@@ -114,7 +155,7 @@ public class AddRestaurant extends Activity {
                             Toast.makeText(AddRestaurant.this, "Upload successful", Toast.LENGTH_LONG).show();
 
                             String key = myRef.push().getKey();
-                            Resturant resturant = new Resturant(RestaurantName.getText().toString(),DeliveryTime.getText().toString(),DeliveryFees.getText().toString(),taskSnapshot.getDownloadUrl().toString(),StartTime.getText().toString(),EndTime.getText().toString(),Longitude.getText().toString(),Latitude.getText().toString());
+                            Resturant resturant = new Resturant(RestaurantName.getText().toString(),DeliveryTime.getText().toString(),DeliveryFees.getText().toString(),taskSnapshot.getDownloadUrl().toString(),StartTime.getText().toString(),EndTime.getText().toString(),String.valueOf(placeLong),String.valueOf(placeLat));
                             myRef.child(key).setValue(resturant);
 
 

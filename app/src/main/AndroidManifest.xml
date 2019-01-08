@@ -21,14 +21,15 @@
         <activity
             android:name=".User.LoginActivity"
             android:label="Login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".Admin.AdminMenu" />
+        <activity android:name=".Admin.AdminMenu">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
 
         <activity android:name=".Admin.ResturantCRUD" />
         <activity android:name=".Admin.FoodCRUD" />
