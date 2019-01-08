@@ -37,15 +37,16 @@
             android:name=".SignupActivity"
             android:label="Sign Up" />
         <activity android:name=".Admin.AddNewFood2" />
-        <activity android:name=".User.RestrauntsActivity" />
-
-        <activity android:name=".User.OrderHistory" />
-        <activity android:name=".User.CartActivity" />
-        <activity android:name=".User.AccountActivity">
+        <activity android:name=".User.RestrauntsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".User.OrderHistory" />
+        <activity android:name=".User.CartActivity" />
+        <activity android:name=".User.AccountActivity">
+
         </activity>
 
 
