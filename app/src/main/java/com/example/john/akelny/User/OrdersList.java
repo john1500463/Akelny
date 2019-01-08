@@ -1,15 +1,19 @@
 package com.example.john.akelny.User;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.BottomNavigationView;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,9 +41,12 @@ public class OrdersList extends Activity {
     ImageView imageview;
     TextView one;
     TextView two;
+    BottomNavigationView navBar;
     FirebaseDatabase database;
     DatabaseReference myRef;
     ArrayList<Resturant>resturants;
+    FrameLayout mainFrameLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,46 @@ public class OrdersList extends Activity {
             StrictMode.setThreadPolicy(policy);
         }
         resturants= new ArrayList<Resturant>();
+        navBar = (BottomNavigationView) findViewById(R.id.main_nav);
+        mainFrameLayout = (FrameLayout) findViewById(R.id.main_frame);
+        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                switch (menuItem.getItemId())
+                {
+                    case R.id.nav_restraunts:
+                    {
+                        startActivity(new Intent(OrdersList.this, RestrauntsActivity.class));
+                        return true;
+                    }
+                    case R.id.nav_cart:
+                    {
+                        startActivity(new Intent(OrdersList.this, CartActivity.class));
+                        return true;
+                    }
+                    case R.id.nav_orderlist:
+                    {
+                        startActivity(new Intent(OrdersList.this, OrdersList.class));
+                        return true;
+                    }
+
+                    case R.id.nav_myinfo:
+                    {
+                        startActivity(new Intent(OrdersList.this, AccountActivity.class));
+                        return true;
+                    }
+
+                    case R.id.nav_logout:
+                    {
+                        startActivity(new Intent(OrdersList.this, LoginActivity.class));
+                        return true;
+                    }
+                    default: return false;
+
+
+                }
+            }
+        });
         listView = (ListView) findViewById(R.id.listview);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Restaurants");
