@@ -95,12 +95,12 @@
 
     <Button
         android:id="@+id/UploadImageForNewFood"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="18dp"
-        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="54dp"
+        android:layout_marginRight="15dp"
         android:layout_marginStart="16dp"
         android:text="Upload Image "
         app:layout_constraintBottom_toTopOf="@+id/NextFirstPageInFood"
@@ -123,13 +123,11 @@
     <TextView
         android:id="@+id/ImageNameForNewFood"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="19dp"
-        android:layout_marginEnd="66dp"
-        android:layout_marginRight="66dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/NextFirstPageInFood"
+        android:layout_height="0dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/UploadImageForNewFood"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/UploadImageForNewFood"
-        app:layout_constraintTop_toBottomOf="@+id/spinner1" />
+        app:layout_constraintTop_toTopOf="@+id/UploadImageForNewFood" />
 </android.support.constraint.ConstraintLayout>

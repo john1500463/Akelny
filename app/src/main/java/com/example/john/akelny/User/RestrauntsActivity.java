@@ -205,7 +205,7 @@ public class RestrauntsActivity extends Activity implements MaterialSearchBar.On
             one=(TextView) convertView.findViewById(R.id.textView);
             one.setText(resturants.get(position).ResuturantName);
             two=(TextView) convertView.findViewById(R.id.textView2);
-            two.setText(String.valueOf(resturants.get(position).DeliveryFees));
+            two.setText(String.valueOf("Delivery Fees: "+ resturants.get(position).DeliveryFees));
             imageview2 = (ImageView) convertView.findViewById(R.id.imageView2);
             imageview2.setImageDrawable(getResources().getDrawable(R.drawable.icons8));
             if(position == resturants.size()-1){
