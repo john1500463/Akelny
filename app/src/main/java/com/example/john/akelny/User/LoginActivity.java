@@ -52,6 +52,8 @@ public class LoginActivity extends Activity {
     CallbackManager cbm;
     FirebaseAuth auth;
 
+    public static boolean isAppRunning;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +186,13 @@ public class LoginActivity extends Activity {
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        isAppRunning = false;
+        //dialog.dismiss();
+    }
 
     static String encodeUserEmail(String userEmail) {
         return userEmail.replace(".", ",");
