@@ -23,14 +23,12 @@
             android:label="Login">
 
         </activity>
-<<<<<<< HEAD
+
         <activity android:name=".Admin.AdminMenu">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
-=======
 
-        <activity android:name=".Admin.AdminMenu" />
->>>>>>> 830b41a0f3752d530a368d2dcb3eb46b3d314aef
+
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
