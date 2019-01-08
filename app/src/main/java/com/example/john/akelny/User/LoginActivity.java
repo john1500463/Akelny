@@ -1,7 +1,6 @@
 package com.example.john.akelny.User;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 
 import android.os.Bundle;
@@ -12,11 +11,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.john.akelny.Admin.AdminMenu;
 import com.example.john.akelny.Model.User;
+
 import com.example.john.akelny.R;
 import com.example.john.akelny.SignupActivity;
-
 import com.google.firebase.database.DataSnapshot;
 
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +28,6 @@ public class LoginActivity extends Activity {
     DatabaseReference users;
     EditText editUserMail, editUserPassword;
     Button btnSignIn, btnSignup;
-    ProgressDialog progressDialog;
 
 
 
@@ -38,8 +35,7 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        progressDialog = new ProgressDialog(LoginActivity.this);
-
+        ProgressBar progressBar;
         db = FirebaseDatabase.getInstance();
         users = db.getReference("Users");
         editUserMail = (EditText) findViewById(R.id.editUserMail);
@@ -50,10 +46,6 @@ public class LoginActivity extends Activity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog.setTitle("Loading Login");
-                progressDialog.setMessage("Loading");
-                progressDialog.setCancelable(false);
-                progressDialog.show();
                 signIn(encodeUserEmail(editUserMail.getText().toString()), editUserPassword.getText().toString());
             }
         });
@@ -91,13 +83,11 @@ public class LoginActivity extends Activity {
                     }
                 }
                 if(flag == true){
-                Intent intent = new Intent(LoginActivity.this, RestrauntsActivity.class);
-                progressDialog.dismiss();
-                startActivity(intent);
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
                 }
                 else {
-                    progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Wrong Username or Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter Password!", Toast.LENGTH_SHORT).show();
                 }
 
 

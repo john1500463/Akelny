@@ -2,23 +2,23 @@ package com.example.john.akelny.User;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.BottomNavigationView;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.john.akelny.Admin.AddNewFood;
 import com.example.john.akelny.Model.Resturant;
 import com.example.john.akelny.R;
 import com.google.firebase.database.DataSnapshot;
@@ -27,18 +27,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-
-import static com.example.john.akelny.R.drawable.icons8;
 
 public class RestrauntsActivity extends Activity {
     ListView listView;
@@ -49,22 +41,58 @@ public class RestrauntsActivity extends Activity {
     DatabaseReference myRef;
     ArrayList<Resturant>resturants;
     ImageView imageview2;
-    ProgressDialog progressDialog;
+    BottomNavigationView navBar;
+    FrameLayout mainFrameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restraunts);
-
-        progressDialog = new ProgressDialog(RestrauntsActivity.this);
-        progressDialog.setTitle("Loading Resturants");
-        progressDialog.setMessage("Loading");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
         resturants= new ArrayList<Resturant>();
+        navBar = (BottomNavigationView) findViewById(R.id.main_nav);
+        mainFrameLayout = (FrameLayout) findViewById(R.id.main_frame);
+        navBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                switch (menuItem.getItemId())
+                {
+                    case R.id.nav_restraunts:
+                    {
+                        startActivity(new Intent(RestrauntsActivity.this, RestrauntsActivity.class));
+                        return true;
+                    }
+                    case R.id.nav_cart:
+                    {
+                        startActivity(new Intent(RestrauntsActivity.this, CartActivity.class));
+                        return true;
+                    }
+                    case R.id.nav_orderlist:
+                    {
+                        startActivity(new Intent(RestrauntsActivity.this, OrdersList.class));
+                        return true;
+                    }
+
+                    case R.id.nav_myinfo:
+                    {
+                        startActivity(new Intent(RestrauntsActivity.this, AccountActivity.class));
+                        return true;
+                    }
+
+                    case R.id.nav_logout:
+                    {
+                        startActivity(new Intent(RestrauntsActivity.this, LoginActivity.class));
+                        return true;
+                    }
+                    default: return false;
+
+
+                }
+            }
+        });
+
         listView = (ListView) findViewById(R.id.listview);
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Restaurants");
@@ -137,11 +165,6 @@ public class RestrauntsActivity extends Activity {
             two.setText(String.valueOf(resturants.get(position).DeliveryFees));
             imageview2 = (ImageView) convertView.findViewById(R.id.imageView2);
             imageview2.setImageDrawable(getResources().getDrawable(R.drawable.icons8));
-
-            if(position == resturants.size()-1){
-
-                progressDialog.dismiss();
-            }
 
 
             return convertView;

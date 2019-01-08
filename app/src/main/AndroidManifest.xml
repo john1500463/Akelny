@@ -42,7 +42,8 @@
         <activity android:name=".User.RestrauntsActivity" />
 
         <activity android:name=".User.OrderHistory" />
-
+        <activity android:name=".User.CartActivity" />
+        <activity android:name=".User.AccountActivity"></activity>
 
 
     </application>
