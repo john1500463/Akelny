@@ -42,9 +42,7 @@ public class SignupActivity extends Activity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final User  user = new User(userMail.getText().toString(),
-                        userPassword.getText().toString(),
-                        userPhone.getText().toString(), userFN.getText().toString(), userLN.getText().toString());
+                final User  user = new User(userMail.getText().toString(), userPassword.getText().toString(), userPhone.getText().toString(), userFN.getText().toString(), userLN.getText().toString(),"1");
 
                 if(userPassword.getText().toString().equals(userPWConfirm.getText().toString()))
                 {users.addListenerForSingleValueEvent(new ValueEventListener() {

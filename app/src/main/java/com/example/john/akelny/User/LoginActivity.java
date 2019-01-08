@@ -1,6 +1,7 @@
 package com.example.john.akelny.User;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 
 import android.os.Bundle;
@@ -28,6 +29,8 @@ public class LoginActivity extends Activity {
     DatabaseReference users;
     EditText editUserMail, editUserPassword;
     Button btnSignIn, btnSignup;
+    ProgressDialog progressDialog;
+    String UserType;
 
 
 
@@ -35,17 +38,21 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ProgressBar progressBar;
+
         db = FirebaseDatabase.getInstance();
         users = db.getReference("Users");
         editUserMail = (EditText) findViewById(R.id.editUserMail);
         editUserPassword = (EditText) findViewById(R.id.editUserPW);
-
+        progressDialog = new ProgressDialog(this);
         btnSignIn = (Button) findViewById(R.id.btnLogin);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.setTitle("Loading Login");
+                progressDialog.setMessage("Loading");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
                 signIn(encodeUserEmail(editUserMail.getText().toString()), editUserPassword.getText().toString());
             }
         });
@@ -74,20 +81,25 @@ public class LoginActivity extends Activity {
         users.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot snap : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     User user = snap.getValue(User.class);
-                    if(encodeUserEmail(user.Email).equals(userMail) && user.Password.equals(userPW)){
+                    if (encodeUserEmail(user.Email).equals(userMail) && user.Password.equals(userPW)) {
                         flag = true;
+                        UserType = user.UserType;
 
                     }
                 }
-                if(flag == true){
-                    Intent intent = new Intent(LoginActivity.this, RestrauntsActivity.class);
-                    startActivity(intent);
+                if (flag == true) {
+                    if (UserType.equals("1")) {
+                        Intent intent = new Intent(LoginActivity.this, RestrauntsActivity.class);
+                        progressDialog.dismiss();
+                        startActivity(intent);
+                    }
                 }
+
                 else {
-                    Toast.makeText(getApplicationContext(), "Enter Password!", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Wrong Username or Password !", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -109,5 +121,11 @@ public class LoginActivity extends Activity {
 
     static String decodeUserEmail(String userEmail) {
         return userEmail.replace(",", ".");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        flag = false;
     }
 }
