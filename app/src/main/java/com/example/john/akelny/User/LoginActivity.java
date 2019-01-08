@@ -83,7 +83,7 @@ public class LoginActivity extends Activity {
                     }
                 }
                 if(flag == true){
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, RestrauntsActivity.class);
                     startActivity(intent);
                 }
                 else {
