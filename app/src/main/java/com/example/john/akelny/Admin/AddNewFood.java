@@ -10,6 +10,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -48,16 +50,25 @@ public class AddNewFood extends Activity {
     ArrayAdapter arrayAdapter;
     ProgressDialog progressDialog;
     TextView textView;
+    EditText FoodName;
+    EditText FoodDescription;
+    String FoodCategoryText;
+    String ResturantNameText;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_food);
         textView=(TextView)findViewById(R.id.ImageNameForNewFood);
         textView.setText("No Image Selected");
+        FoodName = (EditText)findViewById(R.id.foodName);
+        FoodDescription= (EditText) findViewById(R.id.FoodDescription);
         ResturantsSpinner=(Spinner)findViewById(R.id.spinnerResturantNameAddFood);
         image = (ImageView)findViewById(R.id.NextFirstPageInFood);
         uploadImage = (Button) findViewById(R.id.UploadImageForNewFood);
         CategoriesSpinner=(Spinner)findViewById(R.id.spinner1);
+        mStorageRef= FirebaseStorage.getInstance().getReference("Uploads");
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Loading Information");
         progressDialog.setMessage("Loading");
@@ -66,6 +77,7 @@ public class AddNewFood extends Activity {
         uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog = new ProgressDialog(AddNewFood.this);
                 openFileChoose();
             }
         });
@@ -74,8 +86,11 @@ public class AddNewFood extends Activity {
         image.setOnClickListener(new View.OnClickListener() {
                                      @Override
                                      public void onClick(View v) {
-                                         Intent intent = new Intent(AddNewFood.this, AddNewFood2.class);
-                                         startActivity(intent);
+                                         progressDialog.setTitle("Uploading Information");
+                                         progressDialog.setMessage("Uploading");
+                                         progressDialog.setCancelable(false);
+                                         progressDialog.show();
+                                      uploadFile();
                                      }
                                  });
 
@@ -129,6 +144,8 @@ public class AddNewFood extends Activity {
             }
         });
 
+
+
     }
 
     private void openFileChoose(){
@@ -145,7 +162,7 @@ public class AddNewFood extends Activity {
         if(requestCode==PICK_IMAGE_REQUEST && resultCode==RESULT_OK && data!=null &&data.getData()!=null){
 
             Image=data.getData();
-            textView.setText(Image.getPath());
+            textView.setText(Image.getLastPathSegment());
 
         }
     }
@@ -166,16 +183,18 @@ public class AddNewFood extends Activity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-
+                            myRef = database.getReference("Food");
                             Toast.makeText(AddNewFood.this, "Upload successful", Toast.LENGTH_LONG).show();
-//                            Resturant upload = new Res(
-//                                    taskSnapshot.getDownloadUrl().toString());
-//                            String uploadId = mDatabaseRef.push().getKey();
-//                            mDatabaseRef.child(uploadId).setValue(upload);
-
+                            FoodCategoryText = CategoriesSpinner.getSelectedItem().toString();
+                            ResturantNameText = ResturantsSpinner.getSelectedItem().toString();
                             String key = myRef.push().getKey();
-                            Food food = new Food();
+                            Food food = new Food(FoodName.getText().toString(),FoodDescription.getText().toString(),FoodCategoryText,ResturantNameText,taskSnapshot.getDownloadUrl().toString());
                             myRef.child(key).setValue(food);
+                            Intent intent = new Intent(AddNewFood.this,AddNewFood2.class);
+                            intent.putExtra("FoodID",key);
+                            progressDialog.dismiss();
+                            startActivity(intent);
+
 
 
                         }

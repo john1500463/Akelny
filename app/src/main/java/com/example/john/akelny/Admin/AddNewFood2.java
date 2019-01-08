@@ -3,11 +3,16 @@ package com.example.john.akelny.Admin;
 import android.app.Activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+import com.example.john.akelny.Model.PriceSize;
 import com.example.john.akelny.Model.Resturant;
 import com.example.john.akelny.Model.Size;
 import com.example.john.akelny.R;
@@ -26,13 +31,21 @@ public class AddNewFood2 extends Activity {
     DatabaseReference myRef;
     ArrayAdapter arrayAdapter;
     ProgressDialog progressDialog;
+    Button Submit;
+    EditText Price;
+    String FoodID;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        progressDialog = new ProgressDialog(this);
         setContentView(R.layout.activity_add_new_food2);
+        progressDialog = new ProgressDialog(this);
+        Submit = (Button)findViewById(R.id.SubmitPriceSize);
+        Price = (EditText)findViewById(R.id.Price);
+        FoodID = getIntent().getStringExtra("FoodID");
+
+
         progressDialog.setTitle("Loading Information");
         progressDialog.setMessage("Loading");
         progressDialog.setCancelable(false);
@@ -60,8 +73,21 @@ public class AddNewFood2 extends Activity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
+        });
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                myRef = database.getReference("PriceSize");
+                PriceSize pricesize = new PriceSize(Price.getText().toString(),SpinnerSize.getSelectedItem().toString(),FoodID);
+                String key = myRef.push().getKey();
+                myRef.child(key).setValue(pricesize);
+                SizesNames.remove(SpinnerSize.getSelectedItem().toString());
+                arrayAdapter = new ArrayAdapter<String>(AddNewFood2.this, android.R.layout.simple_spinner_item, SizesNames);
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                SpinnerSize.setAdapter(arrayAdapter);
 
+            }
         });
     }
 }

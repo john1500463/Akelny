@@ -16,28 +16,23 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="123dp"
-        android:layout_height="26dp"
+        android:layout_width="134dp"
+        android:layout_height="34dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="107dp"
-        android:layout_marginRight="107dp"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginTop="21dp"
         android:text="TextView"
         tools:layout_editor_absoluteX="163dp"
         tools:layout_editor_absoluteY="35dp" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="123dp"
-        android:layout_height="26dp"
-        android:layout_alignParentTop="true"
+        android:layout_width="138dp"
+        android:layout_height="34dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="87dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginRight="105dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="95dp"
+        android:layout_marginTop="79dp"
         android:text="TextView"
         tools:layout_editor_absoluteX="163dp"
         tools:layout_editor_absoluteY="35dp" />
