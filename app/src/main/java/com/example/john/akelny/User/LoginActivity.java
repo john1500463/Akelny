@@ -122,4 +122,10 @@ public class LoginActivity extends Activity {
     static String decodeUserEmail(String userEmail) {
         return userEmail.replace(",", ".");
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        flag = false;
+    }
 }
