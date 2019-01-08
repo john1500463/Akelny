@@ -102,7 +102,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookToken(loginResult.getAccessToken());
-                startActivity(new Intent(LoginActivity.this, RestrauntsActivity.class));
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             }
 
             @Override
@@ -163,7 +163,7 @@ public class LoginActivity extends Activity {
                 }
                 if (flag == true) {
                     if (UserType.equals("1")) {
-                        Intent intent = new Intent(LoginActivity.this, RestrauntsActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         progressDialog.dismiss();
                         startActivity(intent);
                     }

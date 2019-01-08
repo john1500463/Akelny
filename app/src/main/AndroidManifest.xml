@@ -21,35 +21,25 @@
         <activity
             android:name=".User.LoginActivity"
             android:label="Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".Admin.AdminMenu">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
     </activity>
 
-        <service android:name=".MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-
-        <service android:name=".FirebaseIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
-            </intent-filter>
-        </service>
 
 
         <activity android:name=".Admin.ResturantCRUD" />
         <activity android:name=".Admin.FoodCRUD" />
         <activity android:name=".Admin.CategoriesCRUD" />
         <activity android:name=".Admin.AddCategory" />
+        <activity android:name=".User.HomeActivity" />
         <activity android:name=".Admin.EditCategory" />
         <activity android:name=".Admin.RemoveCategory" />
         <activity android:name=".Admin.AddRestaurant" />
@@ -61,7 +51,6 @@
             android:name=".SignupActivity"
             android:label="Sign Up" />
         <activity android:name=".Admin.AddNewFood2" />
-        <activity android:name=".User.RestrauntsActivity" />
         <activity android:name=".User.OrderHistory" />
         <activity android:name=".User.CartActivity" />
         <activity android:name=".User.AccountActivity"></activity>

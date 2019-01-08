@@ -4,21 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.john.akelny.Admin.AddNewFood;
 import com.example.john.akelny.Model.Resturant;
 import com.example.john.akelny.R;
 import com.google.firebase.database.DataSnapshot;
@@ -27,13 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class OrdersList extends Activity {
@@ -66,7 +59,7 @@ public class OrdersList extends Activity {
                 {
                     case R.id.nav_restraunts:
                     {
-                        startActivity(new Intent(OrdersList.this, RestrauntsActivity.class));
+                        startActivity(new Intent(OrdersList.this, HomeActivity.class));
                         return true;
                     }
                     case R.id.nav_cart:
