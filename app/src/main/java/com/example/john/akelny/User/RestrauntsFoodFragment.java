@@ -45,7 +45,7 @@ import java.util.List;
 public class RestrauntsFoodFragment extends Fragment {
 
 static ArrayList <Food> Carttt;
-String ResturantName;
+static String ResturantNameee;
 ListView listView;
 ArrayList<Food> foodArrayList;
 FirebaseDatabase database;
@@ -71,7 +71,7 @@ ImageView imageview,ImageView;
         mintomax = (Button) v.findViewById(R.id.mintomax);
         Carttt= new ArrayList<Food>();
         Bundle arguments = getArguments();
-        ResturantName = arguments.getString("RName");
+        ResturantNameee = arguments.getString("RName");
         resDelFees=arguments.getString("DeliveryFees");
 
 
@@ -113,7 +113,7 @@ ImageView imageview,ImageView;
             }
         });
 
-        myRef.orderByChild("ResturantID").equalTo(ResturantName).addValueEventListener(new ValueEventListener() {
+        myRef.orderByChild("ResturantID").equalTo(ResturantNameee).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot datas: dataSnapshot.getChildren()){

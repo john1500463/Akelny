@@ -36,7 +36,6 @@ public class AddCategory extends Activity {
                 database = FirebaseDatabase.getInstance();
                 myRef = database.getReference("Categories");
                 String key = myRef.push().getKey();
-
                 myRef.child(key).setValue(category);
 
 

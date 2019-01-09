@@ -2,6 +2,8 @@ package com.example.john.akelny.User;
 
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
+
+import static com.example.john.akelny.User.RestrauntsFoodFragment.ResturantNameee;
 
 
 /**
@@ -49,6 +53,8 @@ public class CartFragment extends Fragment {
     ArrayList<Integer> integers = new ArrayList<Integer>();
     TextView textView;
     Button Checkout;
+    SharedPreferences preferences;
+    String Username;
 
     public CartFragment() {
         // Required empty public constructor
@@ -61,6 +67,8 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_cart, container, false);
         database = FirebaseDatabase.getInstance();
+        preferences = this.getActivity().getSharedPreferences("User", Context.MODE_PRIVATE);
+        Username= preferences.getString("Username","");
 
         listView=v.findViewById(R.id.listViewCart);
         Price = v.findViewById(R.id.editTotalPrice);
@@ -86,7 +94,7 @@ public class CartFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Order order = new Order(FoodIDs,integers,String.valueOf(price));
+                Order order = new Order(Username,FoodIDs,integers,String.valueOf(price),ResturantNameee);
                 myRef = database.getReference("Orders");
                 String key = myRef.push().getKey();
                 myRef.child(key).setValue(order);
