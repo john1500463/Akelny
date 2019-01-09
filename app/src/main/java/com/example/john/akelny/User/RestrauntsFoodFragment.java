@@ -48,7 +48,6 @@ ArrayList<Food> foodArrayList;
 FirebaseDatabase database;
 DatabaseReference myRef;
 ImageView imageview,ImageView;
-Button button;
     public RestrauntsFoodFragment() {
         // Required empty public constructor
     }
@@ -64,22 +63,8 @@ Button button;
         Carttt= new ArrayList<Food>();
         Bundle arguments = getArguments();
         ResturantName = arguments.getString("RName");
-        button = v.findViewById(R.id.GoToCart);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("CartItems", Carttt);
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                Fragment fragment = new CartFragment();
-                fragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fragment_container, fragment, "rest");
-                fragmentTransaction.addToBackStack("rest");
-                fragmentTransaction.commit();
 
-            }
-        });
+
 
         listView= (ListView) v.findViewById(R.id.listViewFoodOrder);
         foodArrayList = new ArrayList<Food>();
