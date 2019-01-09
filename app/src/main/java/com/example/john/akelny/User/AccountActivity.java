@@ -50,11 +50,7 @@ public class AccountActivity extends Activity {
                 {
                     case R.id.nav_restraunts:
                     {
-                        FragmentManager fragmentManager = getFragmentManager();;
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment_container, new RestrauntsFragment(), "rest");
-                        fragmentTransaction.addToBackStack("rest");
-                        fragmentTransaction.commit();
+                        startActivity(new Intent(AccountActivity.this, HomeActivity.class));
                         return true;
                     }
                     case R.id.nav_cart:

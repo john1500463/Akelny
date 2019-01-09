@@ -14,7 +14,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -24,36 +24,30 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Admin.AdminMenu">
-
-    </activity>
-
-
-
-        <activity android:name=".Admin.ResturantCRUD" />
-        <activity android:name=".Admin.FoodCRUD" />
-        <activity android:name=".Admin.CategoriesCRUD" />
-        <activity android:name=".Admin.AddCategory" />
-        <activity android:name=".User.HomeActivity" />
-        <activity android:name=".Admin.EditCategory" />
-        <activity android:name=".Admin.RemoveCategory" />
-        <activity android:name=".Admin.AddRestaurant" />
-        <activity android:name=".Admin.DeleteRestaurant" />
-        <activity android:name=".Admin.EditRestaurant" />
-        <activity android:name=".User.OrdersList" />
-        <activity android:name=".Admin.AddNewFood" />
+        <activity android:label="Admin Menu" android:name=".Admin.AdminMenu"></activity>
+        <activity android:label="Admin Menu" android:name=".Admin.ResturantCRUD" />
+        <activity android:label="Admin Menu" android:name=".Admin.FoodCRUD" />
+        <activity android:label="Admin Menu" android:name=".Admin.CategoriesCRUD" />
+        <activity android:label="Admin Menu" android:name=".Admin.AddCategory" />
+        <activity android:label="Admin Menu" android:name=".User.HomeActivity" />
+        <activity android:label="Admin Menu" android:name=".Admin.EditCategory" />
+        <activity android:label="Admin Menu" android:name=".Admin.RemoveCategory" />
+        <activity android:label="Admin Menu" android:name=".Admin.AddRestaurant" />
+        <activity android:label="Admin Menu" android:name=".Admin.DeleteRestaurant" />
+        <activity android:label="Admin Menu" android:name=".Admin.EditRestaurant" />
+        <activity android:label="Admin Menu" android:name=".User.OrdersList" />
+        <activity android:label="Admin Menu" android:name=".Admin.AddNewFood" />
         <activity
             android:name=".SignupActivity"
             android:label="Sign Up" />
-        <activity android:name=".Admin.AddNewFood2" />
+        <activity android:label="Admin Menu" android:name=".Admin.AddNewFood2" />
         <activity android:name=".User.OrderHistory" />
-        <activity android:name=".User.CartActivity" />
-        <activity android:name=".User.AccountActivity"></activity>
+        <activity android:label="Forgot Password" android:name=".User.ForgotPasswordActivity"/>
+        <activity android:label="My Cart" android:name=".User.CartActivity" />
+        <activity android:label="My Account" android:name=".User.AccountActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -90,9 +84,7 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
-
-        </activity>
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>
