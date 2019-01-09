@@ -2,18 +2,36 @@ package com.example.john.akelny.User;
 
 
 import android.app.Fragment;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.john.akelny.Model.Food;
 import com.example.john.akelny.R;
+
+
+import java.util.ArrayList;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CartFragment extends Fragment {
+
+    ListView listView;
+    ArrayList <Food> food;
+    ImageView plus;
+    ImageView minus;
+    TextView text;
+    int Position;
+    ArrayList<Integer> integers = new ArrayList<Integer>();
+    TextView textView;
 
 
     public CartFragment() {
@@ -26,8 +44,93 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_cart, container, false);
+        listView=v.findViewById(R.id.listViewCart);
+        food=(ArrayList<Food>)getArguments().getSerializable("CartItems");
 
+
+        for (int i=0;i<food.size();i++){
+            integers.add(1);
+        }
+        CustomAdapter customAdapter = new CustomAdapter();
+        listView.setAdapter(customAdapter);
         return v;
     }
 
+    private class CustomAdapter extends BaseAdapter{
+
+        @Override
+        public int getCount() {
+            return food.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            convertView = getLayoutInflater().inflate(R.layout.cartcustomlistview,null);
+            plus = (ImageView)convertView.findViewById(R.id.imageViewplusCart2);
+            minus = (ImageView)convertView.findViewById(R.id.imageViewMinusCart);
+            plus.setImageDrawable(getResources().getDrawable(R.drawable.plus512));
+            minus.setImageDrawable(getResources().getDrawable(R.drawable.minus32));
+            plus.setOnClickListener(myButtonClickListenerPlus);
+            minus.setOnClickListener(myButtonClickListenerMinus);
+            text = (TextView) convertView.findViewById(R.id.FoodNameCustomLV);
+            text.setText(food.get(position).FoodName);
+            textView = (TextView) convertView.findViewById(R.id.Quantity);
+            textView.setText(String.valueOf(integers.get(position)));
+            return convertView;
+        }
+    }
+
+    private View.OnClickListener myButtonClickListenerPlus = new View.OnClickListener() {
+
+        @Override
+
+        public void onClick(View v) {
+
+            View parentRow = (View) v.getParent();
+
+            ListView listView = (ListView) parentRow.getParent();
+
+            Position = listView.getPositionForView(parentRow);
+
+            integers.set(Position,integers.get(Position)+1);
+
+            CustomAdapter customAdapter= new CustomAdapter();
+            listView.setAdapter(customAdapter);
+
+        }
+
+    };
+
+    private View.OnClickListener myButtonClickListenerMinus = new View.OnClickListener() {
+
+        @Override
+
+        public void onClick(View v) {
+
+            View parentRow = (View) v.getParent();
+
+            ListView listView = (ListView) parentRow.getParent();
+
+            Position = listView.getPositionForView(parentRow);
+            if(integers.get(Position)>1){
+
+            integers.set(Position,integers.get(Position)-1);
+
+            CustomAdapter customAdapter= new CustomAdapter();
+            listView.setAdapter(customAdapter);
+            }
+
+        }
+
+    };
 }

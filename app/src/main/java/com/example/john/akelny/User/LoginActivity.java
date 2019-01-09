@@ -2,8 +2,10 @@ package com.example.john.akelny.User;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.john.akelny.Admin.AdminMenu;
 import com.example.john.akelny.Model.User;
 
 import com.example.john.akelny.R;
@@ -51,7 +54,7 @@ public class LoginActivity extends Activity {
     LoginButton fbLogin;
     CallbackManager cbm;
     FirebaseAuth auth;
-
+    SharedPreferences sharedPreferences;
     public static boolean isAppRunning;
 
 
@@ -60,6 +63,13 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
+
+        sharedPreferences =getSharedPreferences("User", Context.MODE_PRIVATE);
+        if(sharedPreferences.getString("Username","")!="") {
+            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+            startActivity(intent);
+        }
+
         fbLogin = (LoginButton)findViewById(R.id.login_button);
         cbm = CallbackManager.Factory.create();
         fbLogin.setReadPermissions(Arrays.asList("email"));
@@ -67,6 +77,9 @@ public class LoginActivity extends Activity {
         AppEventsLogger.activateApp(this);
         db = FirebaseDatabase.getInstance();
         users = db.getReference("Users");
+
+
+
         editUserMail = (EditText) findViewById(R.id.editUserMail);
         editUserPassword = (EditText) findViewById(R.id.editUserPW);
         progressDialog = new ProgressDialog(this);
@@ -88,6 +101,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+
             }
         });
     }
@@ -143,11 +157,13 @@ public class LoginActivity extends Activity {
     public void signIn(final String userMail, final String userPW) {
         if (TextUtils.isEmpty(userMail)) {
             Toast.makeText(getApplicationContext(), "Enter Email Address!", Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss();
             return;
         }
 
         if (TextUtils.isEmpty(userPW)) {
             Toast.makeText(getApplicationContext(), "Enter Password!", Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss();
             return;
         }
         users.addValueEventListener(new ValueEventListener() {
@@ -164,6 +180,17 @@ public class LoginActivity extends Activity {
                 if (flag == true) {
                     if (UserType.equals("1")) {
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("Username",decodeUserEmail(userMail));
+                        editor.apply();
+                        progressDialog.dismiss();
+                        startActivity(intent);
+                    }
+                    else if (UserType.equals("2")) {
+                        Intent intent = new Intent(LoginActivity.this, AdminMenu.class);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("Username",decodeUserEmail(userMail));
+                        editor.apply();
                         progressDialog.dismiss();
                         startActivity(intent);
                     }

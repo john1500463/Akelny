@@ -54,6 +54,7 @@ public class AddNewFood extends Activity {
     EditText FoodDescription;
     String FoodCategoryText;
     String ResturantNameText;
+    EditText Price;
 
 
     @Override
@@ -73,6 +74,7 @@ public class AddNewFood extends Activity {
         progressDialog.setTitle("Loading Information");
         progressDialog.setMessage("Loading");
         progressDialog.setCancelable(false);
+        Price = (EditText)findViewById(R.id.PriceEditText);
         progressDialog.show();
         uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,7 +190,7 @@ public class AddNewFood extends Activity {
                             FoodCategoryText = CategoriesSpinner.getSelectedItem().toString();
                             ResturantNameText = ResturantsSpinner.getSelectedItem().toString();
                             String key = myRef.push().getKey();
-                            Food food = new Food(FoodName.getText().toString(),FoodDescription.getText().toString(),FoodCategoryText,ResturantNameText,taskSnapshot.getDownloadUrl().toString());
+                            Food food = new Food(FoodName.getText().toString(),FoodDescription.getText().toString(),FoodCategoryText,ResturantNameText,taskSnapshot.getDownloadUrl().toString(),Price.getText().toString());
                             myRef.child(key).setValue(food);
                             Intent intent = new Intent(AddNewFood.this,AddNewFood2.class);
                             intent.putExtra("FoodID",key);

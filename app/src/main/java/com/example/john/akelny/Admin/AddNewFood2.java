@@ -3,17 +3,14 @@ package com.example.john.akelny.Admin;
 import android.app.Activity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 import com.example.john.akelny.Model.PriceSize;
-import com.example.john.akelny.Model.Resturant;
 import com.example.john.akelny.Model.Size;
 import com.example.john.akelny.R;
 import com.google.firebase.database.DataSnapshot;
@@ -42,7 +39,7 @@ public class AddNewFood2 extends Activity {
         setContentView(R.layout.activity_add_new_food2);
         progressDialog = new ProgressDialog(this);
         Submit = (Button)findViewById(R.id.SubmitPriceSize);
-        Price = (EditText)findViewById(R.id.Price);
+        Price = (EditText)findViewById(R.id.PriceEditText);
         FoodID = getIntent().getStringExtra("FoodID");
 
 

@@ -5,7 +5,9 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -38,6 +40,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+
+import static com.example.john.akelny.User.RestrauntsFoodFragment.Carttt;
 
 public class HomeActivity extends Activity implements MaterialSearchBar.OnSearchActionListener{
     ListView listView;
@@ -93,9 +97,13 @@ public class HomeActivity extends Activity implements MaterialSearchBar.OnSearch
                     }
                     case R.id.nav_cart:
                     {
-                        FragmentManager fragmentManager = getFragmentManager();;
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("CartItems", Carttt);
+                        FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment_container, new CartFragment(), "rest");
+                        Fragment fragment = new CartFragment();
+                        fragment.setArguments(bundle);
+                        fragmentTransaction.replace(R.id.fragment_container, fragment, "rest");
                         fragmentTransaction.addToBackStack("rest");
                         fragmentTransaction.commit();
                         return true;
@@ -118,6 +126,10 @@ public class HomeActivity extends Activity implements MaterialSearchBar.OnSearch
 
                     case R.id.nav_logout:
                     {
+                        SharedPreferences sharedPreferences =getSharedPreferences("User", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("Username","");
+                        editor.apply();
                         startActivity(new Intent(HomeActivity.this, LoginActivity.class));
                         return true;
                     }
