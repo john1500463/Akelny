@@ -20,6 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.john.akelny.Model.Food;
 import com.example.john.akelny.R;
@@ -92,20 +93,23 @@ ImageView imageview,ImageView;
                     }
                 });
                 listView.setAdapter(customerAdapter);
+                Toast.makeText(getActivity(), "Ordered in Ascending Order", Toast.LENGTH_SHORT).show();
             }
         });
 
         maxtomin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 CustomerAdapter customerAdapter = new CustomerAdapter();
                 Collections.sort(foodArrayList, new Comparator<Food>() {
                     @Override
                     public int compare(Food o1, Food o2) {
                         return Integer.valueOf(o2.Price).compareTo(Integer.valueOf(o1.Price));
+
                     }
                 });
                 listView.setAdapter(customerAdapter);
+                Toast.makeText(getActivity(), "Ordered in Descending Order", Toast.LENGTH_SHORT).show();
             }
         });
 
