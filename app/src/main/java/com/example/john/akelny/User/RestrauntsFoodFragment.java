@@ -51,6 +51,7 @@ FirebaseDatabase database;
 DatabaseReference myRef;
 Button mintomax;
 Button maxtomin;
+static String resDelFees;
 ImageView imageview,ImageView;
     public RestrauntsFoodFragment() {
         // Required empty public constructor
@@ -62,12 +63,15 @@ ImageView imageview,ImageView;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+
         View v= inflater.inflate(R.layout.fragment_restraunts_food, container, false);
+
         maxtomin = (Button) v.findViewById(R.id.maxtomin);
         mintomax = (Button) v.findViewById(R.id.mintomax);
         Carttt= new ArrayList<Food>();
         Bundle arguments = getArguments();
         ResturantName = arguments.getString("RName");
+        resDelFees=arguments.getString("DeliveryFees");
 
 
 

@@ -42,6 +42,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import static com.example.john.akelny.User.RestrauntsFoodFragment.Carttt;
+import static com.example.john.akelny.User.RestrauntsFoodFragment.resDelFees;
 
 public class HomeActivity extends Activity implements MaterialSearchBar.OnSearchActionListener{
     ListView listView;
@@ -99,11 +100,13 @@ public class HomeActivity extends Activity implements MaterialSearchBar.OnSearch
                     {
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("CartItems", Carttt);
+                        bundle.putString("DelFees",resDelFees);
                         FragmentManager fragmentManager = getFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         Fragment fragment = new CartFragment();
                         fragment.setArguments(bundle);
                         fragmentTransaction.replace(R.id.fragment_container, fragment, "rest");
+
                         fragmentTransaction.addToBackStack("rest");
                         fragmentTransaction.commit();
                         return true;
