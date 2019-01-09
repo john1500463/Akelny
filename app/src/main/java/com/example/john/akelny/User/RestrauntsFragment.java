@@ -60,6 +60,11 @@ public class RestrauntsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_restraunts, container, false);
         resturants= new ArrayList<Resturant>();
+        progressDialog= new ProgressDialog(getActivity());
+        progressDialog.setTitle("Loading Restraunts");
+        progressDialog.setMessage("Loading");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -148,6 +153,7 @@ public class RestrauntsFragment extends Fragment {
             imageview2 = (ImageView) convertView.findViewById(R.id.imageView2);
             imageview2.setImageDrawable(getResources().getDrawable(R.drawable.icons8));
             if(position == resturants.size()-1){
+                progressDialog.dismiss();
 
             }
 

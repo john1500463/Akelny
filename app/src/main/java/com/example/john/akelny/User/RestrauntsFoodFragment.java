@@ -4,6 +4,7 @@ package com.example.john.akelny.User;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +54,7 @@ FirebaseDatabase database;
 DatabaseReference myRef;
 Button mintomax;
 Button maxtomin;
+ProgressDialog progressDialog;
 static String resDelFees;
 ImageView imageview,ImageView;
     public RestrauntsFoodFragment() {
@@ -66,7 +69,11 @@ ImageView imageview,ImageView;
 
 
         View v= inflater.inflate(R.layout.fragment_restraunts_food, container, false);
-
+        progressDialog= new ProgressDialog(getActivity());
+        progressDialog.setTitle("Loading Restraunts");
+        progressDialog.setMessage("Loading");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         maxtomin = (Button) v.findViewById(R.id.maxtomin);
         mintomax = (Button) v.findViewById(R.id.mintomax);
         Carttt= new ArrayList<Food>();
@@ -193,7 +200,10 @@ ImageView imageview,ImageView;
             FoodName.setText(foodArrayList.get(position).FoodName);
             TextView FoodDesc = convertView.findViewById(R.id.FoodDescriptionTextView);
             FoodDesc.setText(foodArrayList.get(position).FoodDescription);
+            if(position == foodArrayList.size()-1){
+                progressDialog.dismiss();
 
+            }
 
             return convertView;
         }
