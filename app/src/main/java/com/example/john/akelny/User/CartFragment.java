@@ -8,12 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.john.akelny.Model.Food;
+import com.example.john.akelny.Model.Order;
 import com.example.john.akelny.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
@@ -28,11 +35,20 @@ public class CartFragment extends Fragment {
     ArrayList <Food> food;
     ImageView plus;
     ImageView minus;
-    TextView text;
+    TextView text,Price;
+
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+    ArrayList <String> FoodIDs;
+
+    Order order;
+
+    String DelFees;
+    Double price=0.0;
     int Position;
     ArrayList<Integer> integers = new ArrayList<Integer>();
     TextView textView;
-
+    Button Checkout;
 
     public CartFragment() {
         // Required empty public constructor
@@ -44,15 +60,38 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_cart, container, false);
+        database = FirebaseDatabase.getInstance();
+
         listView=v.findViewById(R.id.listViewCart);
+        Price = v.findViewById(R.id.editTotalPrice);
         food=(ArrayList<Food>)getArguments().getSerializable("CartItems");
 
+        DelFees = getArguments().getString("DelFees");
+        FoodIDs = new ArrayList<String>();
 
         for (int i=0;i<food.size();i++){
             integers.add(1);
+            price=price+Double.valueOf(food.get(i).Price.toString());
+            FoodIDs.add(food.get(i).FoodName);
+
         }
+
+
+        price=price+Double.valueOf(DelFees);
+        Price.setText(String.valueOf(price));
         CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
+        Checkout = (Button) v.findViewById(R.id.button3);
+        Checkout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Order order = new Order(FoodIDs,integers,String.valueOf(price));
+                myRef = database.getReference("Orders");
+                String key = myRef.push().getKey();
+                myRef.child(key).setValue(order);
+            }
+        });
         return v;
     }
 
@@ -86,6 +125,7 @@ public class CartFragment extends Fragment {
             text.setText(food.get(position).FoodName);
             textView = (TextView) convertView.findViewById(R.id.Quantity);
             textView.setText(String.valueOf(integers.get(position)));
+
             return convertView;
         }
     }
@@ -106,6 +146,17 @@ public class CartFragment extends Fragment {
 
             CustomAdapter customAdapter= new CustomAdapter();
             listView.setAdapter(customAdapter);
+            price=0.0;
+            for (int i=0;i<food.size();i++){
+                int num = integers.get(i);
+                for(int j=0;j<num;j++){
+                    price=price+Double.valueOf(food.get(i).Price);
+                }
+
+            }
+            price=price+Double.valueOf(DelFees);
+            Price.setText(String.valueOf(String.valueOf(price)));
+
 
         }
 
@@ -125,10 +176,15 @@ public class CartFragment extends Fragment {
             if(integers.get(Position)>1){
 
             integers.set(Position,integers.get(Position)-1);
+            price=price-Double.valueOf(food.get(Position).Price);
 
             CustomAdapter customAdapter= new CustomAdapter();
             listView.setAdapter(customAdapter);
+
+                price=price+Double.valueOf(DelFees);
             }
+
+            Price.setText(String.valueOf(price));
 
         }
 

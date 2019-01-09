@@ -95,6 +95,7 @@ public class RestrauntsFragment extends Fragment {
                 Fragment fragment = new RestrauntsFoodFragment();
                 Bundle arguments = new Bundle();
                 arguments.putString( "RName" , resturants.get(position).ResuturantName);
+                arguments.putString("DeliveryFees",resturants.get(position).DeliveryFees);
                 fragment.setArguments(arguments);
                 fragmentTransaction.replace(R.id.fragment_container, fragment, "rest");
                 fragmentTransaction.addToBackStack("rest");

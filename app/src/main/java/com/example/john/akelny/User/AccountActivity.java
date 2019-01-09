@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Environment;
 
@@ -21,7 +23,15 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.john.akelny.Model.Food;
+import com.example.john.akelny.Model.User;
 import com.example.john.akelny.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -35,10 +45,47 @@ public class AccountActivity extends Activity {
     Uri file;
     BottomNavigationView navBar;
     FrameLayout mainFrameLayout;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+    StorageReference mStorageRef;
+    User user;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+        name = findViewById(R.id.textView5);
+        mail= findViewById(R.id.textView8);
+        number = findViewById(R.id.textView9);
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Users");
+
+        sharedPreferences =getSharedPreferences("User", Context.MODE_PRIVATE);
+        String UEmail = sharedPreferences.getString("Username","");
+
+
+        myRef.orderByChild("Email").equalTo(UEmail).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot datas: dataSnapshot.getChildren()){
+                    user = datas.getValue(User.class);
+
+                }
+
+                name.setText(user.FirstName.toString() + " " + user.LastName.toString());
+                mail.setText(user.Email.toString());
+                number.setText(user.PhoneNumber);
+
+
+            }
+
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         Button button = (Button) findViewById(R.id.button2);
         imageView = (ImageView) findViewById(R.id.imageView6);
         navBar = (BottomNavigationView) findViewById(R.id.main_nav);
@@ -50,7 +97,11 @@ public class AccountActivity extends Activity {
                 {
                     case R.id.nav_restraunts:
                     {
-                        startActivity(new Intent(AccountActivity.this, HomeActivity.class));
+                        FragmentManager fragmentManager = getFragmentManager();;
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, new RestrauntsFragment(), "rest");
+                        fragmentTransaction.addToBackStack("rest");
+                        fragmentTransaction.commit();
                         return true;
                     }
                     case R.id.nav_cart:
