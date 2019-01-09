@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,33 +8,49 @@
     tools:context=".User.RestrauntsFoodFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".User.ShowResturantFood"
-        android:orientation="vertical">
+        android:layout_height="60dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginRight="1dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/listViewFoodOrder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <ListView
-            android:id="@+id/listViewFoodOrder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"></ListView>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_gravity="bottom">
 
-            <Button
-                android:id="@+id/GoToCart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Go To Cart" />
-        </FrameLayout>
+        <Button
+            android:id="@+id/maxtomin"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="null"
+            android:text="(Max-min)" />
+
+        <Button
+            android:id="@+id/mintomax"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="null"
+            android:text="(Min-max)" />
 
     </LinearLayout>
 
+    <ListView
+        android:id="@+id/listViewFoodOrder"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>
