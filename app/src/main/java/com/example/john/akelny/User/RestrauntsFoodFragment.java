@@ -34,6 +34,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -47,6 +49,8 @@ ListView listView;
 ArrayList<Food> foodArrayList;
 FirebaseDatabase database;
 DatabaseReference myRef;
+Button mintomax;
+Button maxtomin;
 ImageView imageview,ImageView;
     public RestrauntsFoodFragment() {
         // Required empty public constructor
@@ -59,7 +63,8 @@ ImageView imageview,ImageView;
         // Inflate the layout for this fragment
 
         View v= inflater.inflate(R.layout.fragment_restraunts_food, container, false);
-
+        maxtomin = (Button) v.findViewById(R.id.maxtomin);
+        mintomax = (Button) v.findViewById(R.id.mintomax);
         Carttt= new ArrayList<Food>();
         Bundle arguments = getArguments();
         ResturantName = arguments.getString("RName");
@@ -71,6 +76,34 @@ ImageView imageview,ImageView;
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Food");
 
+        mintomax.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomerAdapter customerAdapter = new CustomerAdapter();
+
+                Collections.sort(foodArrayList, new Comparator<Food>() {
+                    @Override
+                    public int compare(Food o1, Food o2) {
+                        return Integer.valueOf(o1.Price).compareTo(Integer.valueOf(o2.Price));
+                    }
+                });
+                listView.setAdapter(customerAdapter);
+            }
+        });
+
+        maxtomin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomerAdapter customerAdapter = new CustomerAdapter();
+                Collections.sort(foodArrayList, new Comparator<Food>() {
+                    @Override
+                    public int compare(Food o1, Food o2) {
+                        return Integer.valueOf(o2.Price).compareTo(Integer.valueOf(o1.Price));
+                    }
+                });
+                listView.setAdapter(customerAdapter);
+            }
+        });
 
         myRef.orderByChild("ResturantID").equalTo(ResturantName).addValueEventListener(new ValueEventListener() {
             @Override
